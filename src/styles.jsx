@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
 html {
   box-sizing: border-box;
   width: 100vw;
@@ -209,3 +209,5 @@ img {
   background-color: #303f9f;
 }
 `;
+
+export default GlobalStyle;
