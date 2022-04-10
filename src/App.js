@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import Searchbar from './components/Searchbar';
-import ImageGallery from './components/ImageGallery'
-import ImageGalleryItem from './components/ImageGalleryItem';
-import Loader from './components/Loader';
-import Button from './components/Button';
-import Modal from './components/Modal';
-import GlobalStyle from './styles';
+// import Searchbar from './components/Searchbar';
+// import ImageGallery from './components/ImageGallery'
+// import ImageGalleryItem from './components/ImageGalleryItem';
+// import Loader from './components/Loader';
+// import Button from './components/Button';
+// import Modal from './components/Modal';
+// import GlobalStyle from './styles';
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 // import { Rings } from  'react-loader-spinner'
 
 class imageFinder extends Component {
   state = {
-    contacts: [],
-    filter: '',
+    image: null,
+  }
+  
+  componentDidMount() {
+    fetch('https://pixabay.com/api/?q=cat&page=1&key=26662147-37bf5d980befc030dc3511be2&image_type=photo&orientation=horizontal&per_page=12')
+      .then(res => res.json())
+      .then(console.log);
   }
 
   // deleteContact = (contactId) => {
@@ -60,17 +65,23 @@ class imageFinder extends Component {
   // }
 
   render() {
+
+    const { image } = this.state;
+
     return (
-      <GlobalStyle>
-        <>
-          <Searchbar/>
-          <ImageGallery/>
-          <ImageGalleryItem/>
-          <Loader/>
-          <Button/>
-          <Modal/>
-        </>
-      </GlobalStyle>
+      // <GlobalStyle>
+      //   <>
+      //     <Searchbar/>
+      //     <ImageGallery/>
+      //     <ImageGalleryItem/>
+      //     <Loader/>
+      //     <Button/>
+      //     <Modal/>
+      //   </>
+      // </GlobalStyle>
+      <div>
+        {image && (<div>'Картинка'</div>)}
+      </div>
     )
   }
 }
