@@ -1,17 +1,11 @@
+import Searchbar from './Searchbar';
+import ImageGallery from './ImageGallery';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        textTransform: 'uppercase',
-        color: '#010101',
-      }}
-    >
-      Ass hole
-    </div>
+    <>
+      <Searchbar searchSubmit={ (imageName) => {console.log(imageName)}}/>
+      <ImageGallery/>
+    </>
   );
 };
