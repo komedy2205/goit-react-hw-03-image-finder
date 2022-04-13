@@ -7,7 +7,7 @@ class ImageGalleryItem extends Component {
     }
     
     componentDidMount() {
-        fetch('https://pixabay.com/api/?key=26662147-37bf5d980befc030dc3511be2&q=forest&image_type=photo&pretty=true')
+        fetch('https://pixabay.com/api/?q=cat&page=1&key=26662147-37bf5d980befc030dc3511be2&image_type=photo&orientation=horizontal&per_page=12')
             .then(res => {
                 if (!res.ok) {
                     throw new Error(res.status);
