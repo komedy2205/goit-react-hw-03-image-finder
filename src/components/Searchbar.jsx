@@ -14,7 +14,7 @@ class Searchbar extends Component {
         event.preventDefault();
 
         if (this.state.imageName.trim() === '') {
-            return
+            return alert('Введите критерий поиска изображения');
         }
         this.props.searchSubmit(this.state.imageName);
         this.setState({ imageName: '' });
@@ -25,10 +25,6 @@ class Searchbar extends Component {
             return (
             <header className="searchbar">
                 <form className="form" onSubmit={this.handleSubmit}>
-                    <button type="submit" className="button">
-                        <span className="button-label">Search</span>
-                    </button>
-
                     <input
                         className="input"
                         type="text"
@@ -37,8 +33,12 @@ class Searchbar extends Component {
                         placeholder="Search images and photos"
                         onChange={this.handleChangeName}
                         value={this.state.imageName}
+                        />
+                        
+                    <button type="submit" className="button">
+                        <span className="button-label">Search</span>
+                    </button>
 
-                    />
                 </form>
             </header>
         )
