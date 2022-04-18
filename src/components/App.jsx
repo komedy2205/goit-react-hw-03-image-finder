@@ -7,13 +7,10 @@ export class App extends Component {
     imageName: '',
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.imageName !== this.state.imageName) {
-      fetch(`https://pixabay.com/api/?q=${this.props.imageName}&page=1&key=26662147-37bf5d980befc030dc3511be2&image_type=photo&orientation=horizontal&per_page=12`)
-        .then(res => res.json())
-        .then(image => this.setState({ image }));
-        }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevProps.imageName !== this.state.imageName) {
+  //   }
+  // }
   
   handleChangeName = event => {
         this.setState({ imageName: event.currentTarget.value.toLowerCase() });
@@ -27,6 +24,11 @@ export class App extends Component {
       }
     // this.onSubmit(this.state.imageName);
     this.setState({ imageName: '' });
+    
+      fetch(`https://pixabay.com/api/?key=26662147-37bf5d980befc030dc3511be2&q=${this.state.imageName}`)
+        .then(res => res.json())
+        .then(data => console.log(data));
+        
   }
 
 
