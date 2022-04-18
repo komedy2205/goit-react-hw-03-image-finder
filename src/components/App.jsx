@@ -1,11 +1,34 @@
 import React, {Component} from 'react';
-import Searchbar from './Searchbar';
-import ImageGallery from './ImageGallery';
+// import Searchbar from './Searchbar';
+// import ImageGallery from './ImageGallery';
 
 export class App extends Component {
   state = {
     imageName: '',
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.imageName !== this.state.imageName) {
+      fetch(`https://pixabay.com/api/?q=${this.props.imageName}&page=1&key=26662147-37bf5d980befc030dc3511be2&image_type=photo&orientation=horizontal&per_page=12`)
+        .then(res => res.json())
+        .then(image => this.setState({ image }));
+        }
+  }
+  
+  handleChangeName = event => {
+        this.setState({ imageName: event.currentTarget.value.toLowerCase() });
+    }
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+      if (this.state.imageName.trim() === '') {
+        return alert('Введите критерий поиска изображения');
+      }
+    // this.onSubmit(this.state.imageName);
+    this.setState({ imageName: '' });
+  }
+
 
   handleFormSubmit = imageName => {
     this.setState({
@@ -18,8 +41,28 @@ export class App extends Component {
   render(){
   return (
     <>
-      <Searchbar searchSubmit={ this.handleFormSubmit }/>
-      <ImageGallery imageName={ this.state.imageName }/>
+      <header className="searchbar">
+                <form className="form" onSubmit={this.handleSubmit}>
+                    <input
+                        className="input"
+                        type="text"
+                        autoComplete="off"
+                        autoFocus
+                        placeholder="Search images and photos"
+                        onChange={this.handleChangeName}
+                        value={this.state.imageName}
+                        />
+                        
+                    <button type="submit" className="button">
+                        <span className="button-label">Search</span>
+                    </button>
+
+                </form>
+            </header>
+      <ul className="gallery">
+                    <h1>Images</h1>
+                    <img src="{image.hits.webformatUrl}" alt="" />
+                </ul>
     </>
   );
   }
