@@ -27,8 +27,18 @@ export class App extends Component {
     
       fetch(`https://pixabay.com/api/?key=26662147-37bf5d980befc030dc3511be2&q=${this.state.imageName}`)
         .then(res => res.json())
-        .then(data => console.log(data));
+        .then(this.showData);
         
+  }
+
+  showData(data) {
+    console.log(data);
+
+    const imageItem = `<li>
+      <img src="${data.hits.webformatURL}" alt="" />
+    </li>`
+
+    console.log(imageItem);
   }
 
 
