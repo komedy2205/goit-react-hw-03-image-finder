@@ -25,20 +25,32 @@ export class App extends Component {
     // this.onSubmit(this.state.imageName);
     this.setState({ imageName: '' });
     
-      fetch(`https://pixabay.com/api/?key=26662147-37bf5d980befc030dc3511be2&q=${this.state.imageName}`)
-        .then(res => res.json())
-        .then(this.showData);
+    fetch(`https://pixabay.com/api/?q=${this.state.imageName}&page=1&key=26662147-37bf5d980befc030dc3511be2&image_type=photo&orientation=horizontal&per_page=12`)
+      
+        .then(res => {
+          if (!res.ok) {
+            throw Error(res.statusText)
+          }
+          return res.json();
+        })
+        .then(this.showData).catch(this.showError);
         
   }
 
+  showError() {
+    alert('Something went wrong');
+  }
+
   showData(data) {
-    console.log(data);
-
-    const imageItem = `<li>
-      <img src="${data.hits.webformatURL}" alt="" />
-    </li>`
-
-    console.log(imageItem);
+    console.log(data.hits);
+    
+    const imageItem = data.hits.map(el =>
+      `<li>
+      <img src="${el.webformatURL}}" alt="" />
+      </li>`
+      );
+      
+    return imageItem;
   }
 
 
