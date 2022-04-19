@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 export class App extends Component {
   state = {
     imageName: '',
+    imageData: [],
   }
 
   // componentDidUpdate(prevProps, prevState) {
@@ -45,10 +46,7 @@ export class App extends Component {
     console.log(data.hits);
     
     const imageItem = data.hits.map(el =>
-      `<li>
-      <img src="${el.webformatURL}}" alt="" />
-      </li>`
-      );
+      this.setState({ imageData: [] }));
       
     return imageItem;
   }
@@ -85,7 +83,7 @@ export class App extends Component {
             </header>
       <ul className="gallery">
                     <h1>Images</h1>
-                    <img src="{image.hits.webformatUrl}" alt="" />
+                    <img src="{image.hits.webformatUrl}" alt="card" />
                 </ul>
     </>
   );
