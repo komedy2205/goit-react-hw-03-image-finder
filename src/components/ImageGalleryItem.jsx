@@ -1,29 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 
-class ImageGalleryItem extends Component {
-    state = {
-        imageName: '',
-    }
-
+const ImageGalleryItem = ({option}) => {
     
-    
-    
-
-
-    render() {
-
-        const { imageName } = this.props;
-
         return (
-            <>
-                <h1>ImageGalleryItem</h1>
-                <li className="gallery-item">
-                    <p>{imageName}</p>
-                    {/* <img src={imageName.hits.webformatURL} alt="searchingPhoto" /> */}
-                </li>
-            </>
+        <li>
+            {option.map((type) => (
+                <img src={type.webformalURL} alt="" key={type.id}/>
+            ))}
+            </li>
         )
-    }
-}
+    };
 
 export default ImageGalleryItem;

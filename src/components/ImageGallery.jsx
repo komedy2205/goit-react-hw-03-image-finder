@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import ImageGalleryItem from "./ImageGalleryItem";
+import ImageGalleryItem from "./ImageGalleryItem";
 
 class ImageGallery extends Component {
     state = {
@@ -18,20 +18,22 @@ class ImageGallery extends Component {
           }
           return res.json();
         })
-            .then(image => this.setState({ imageData: image.hits })).catch(this.showError);
+          .then(image => this.setState({ imageData: image.hits }))
+          .catch(this.showError);
     }
     }
-
     
     showError() {
         alert('Something went wrong');
     }
     
     render() {
+
+        const { imageData } = this.state;
         
         return (
             <ul className="gallery">
-                
+                <ImageGalleryItem option={imageData} />
             </ul>
         )
     }
