@@ -42,14 +42,13 @@ export class App extends Component {
     alert('Something went wrong');
   }
 
-  showData(data) {
+showData(data) {
     console.log(data.hits);
-    
-    const imageItem = data.hits.map(el =>
-      this.setState({ imageData: [] }));
-      
-    return imageItem;
+    this.importData(data.hits);
   }
+  importData = data => {
+    this.setState({ dataImage: data.hits });
+  };
 
 
   handleFormSubmit = imageName => {
