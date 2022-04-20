@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 
 class ImageGalleryItem extends Component {
-       
+    state = {
+        imageName: '',
+    }
 
+    
+    
+    
 
 
     render() {
