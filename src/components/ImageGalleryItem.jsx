@@ -1,14 +1,8 @@
-import React from "react";
+// import React from "react";
 
-const ImageGalleryItem = ({option}) => {
+// const ImageGalleryItem = ({imageName}) => {
     
-        return (
-        <li>
-            {option.map((type) => (
-                <img src={type.webformalURL} alt="" key={type.id}/>
-            ))}
-            </li>
-        )
-    };
+//         return 
+//     };
 
-export default ImageGalleryItem;
+// export default ImageGalleryItem;
