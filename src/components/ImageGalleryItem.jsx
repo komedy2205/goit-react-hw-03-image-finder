@@ -1,8 +1,13 @@
-// import React from "react";
+import React from "react";
 
-// const ImageGalleryItem = ({imageName}) => {
+const ImageGalleryItem = ({ smallURL }) => {
     
-//         return 
-//     };
+    return (
+        <li>
+            <img src={smallURL} alt="card" />
+        </li>
+                       
+        )
+    };
 
-// export default ImageGalleryItem;
+export default ImageGalleryItem;

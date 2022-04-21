@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
+import Button from './Button';
 
 export class App extends Component {
   state = {
@@ -21,9 +22,11 @@ export class App extends Component {
   };
 
   getImages = () => {
+    let page = 1;
+
     return fetch(
-      `https://pixabay.com/api/?q=${this.state.imageName}&page=1&key=26662147-37bf5d980befc030dc3511be2&image_type=photo&orientation=horizontal&per_page=12`
-    ).then(res => {
+      `https://pixabay.com/api/?q=${this.state.imageName}&page=${page}&key=26662147-37bf5d980befc030dc3511be2&image_type=photo&orientation=horizontal&per_page=5`)
+      .then(res => {
       if (!res.ok) {
         throw Error(res.statusText);
       }
@@ -39,10 +42,15 @@ export class App extends Component {
   };
 
   render() {
+
+    const { images } = this.state;
+    
+    
     return (
       <>
         <Searchbar onSubmit={this.handleFormChange} />
-        <ImageGallery images={this.state.images} />
+        <ImageGallery images={images} />
+        {images !== [] && <Button/>}
       </>
     );
   }
