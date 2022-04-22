@@ -1,5 +1,6 @@
+import { createGlobalStyle } from 'styled-components';
 
-
+export const GlobalStyles = createGlobalStyle`
 html {
   box-sizing: border-box;
   width: 100vw;
@@ -207,3 +208,4 @@ img {
 .Button:focus {
   background-color: #303f9f;
 }
+`;

@@ -2,30 +2,28 @@ import React, { Component } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
 import Button from './Button';
+import { GlobalStyles } from '../styles';
 
 export class App extends Component {
   state = {
     imageName: '',
     images: [],
+    page: 1,
   };
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.imageName !== this.state.imageName) {
       this.getImages()
-        .then(image =>
-          this.setState(prevState => ({
-            images: [...prevState.images, ...image.hits],
-          }))
-        )
+        .then(image => this.setState(prevState => ({ images: [...prevState.images, ...image.hits] })))
         .catch(this.showError);
     }
   };
 
   getImages = () => {
-    let page = 1;
-
+    const { imageName, page } = this.state;
+    
     return fetch(
-      `https://pixabay.com/api/?q=${this.state.imageName}&page=${page}&key=26662147-37bf5d980befc030dc3511be2&image_type=photo&orientation=horizontal&per_page=5`)
+      `https://pixabay.com/api/?q=${imageName}&page=${page}&key=26662147-37bf5d980befc030dc3511be2&image_type=photo&orientation=horizontal&per_page=5`)
       .then(res => {
       if (!res.ok) {
         throw Error(res.statusText);
@@ -41,6 +39,12 @@ export class App extends Component {
     });
   };
 
+  pageChange = event => {
+    event.preventDefault();
+
+    this.setState({ page: [ + 1 ] })
+  }
+
   render() {
 
     const { images } = this.state;
@@ -50,7 +54,8 @@ export class App extends Component {
       <>
         <Searchbar onSubmit={this.handleFormChange} />
         <ImageGallery images={images} />
-        {images !== [] && <Button/>}
+        {(images.length > 0) && <Button onSubmit={ this.pageChange }/>}
+        <GlobalStyles/>
       </>
     );
   }
