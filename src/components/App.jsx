@@ -39,10 +39,10 @@ export class App extends Component {
     });
   };
 
-  pageChange = event => {
-    event.preventDefault();
-
-    this.setState({ page: [ + 1 ] })
+  pageChange = page => {
+    this.setState({
+      page: page + 1,
+    });
   }
 
   render() {
@@ -54,7 +54,7 @@ export class App extends Component {
       <>
         <Searchbar onSubmit={this.handleFormChange} />
         <ImageGallery images={images} />
-        {(images.length > 0) && <Button onSubmit={ this.pageChange }/>}
+        {(images.length > 0) && <Button onClick={ this.pageChange }/>}
         <GlobalStyles/>
       </>
     );

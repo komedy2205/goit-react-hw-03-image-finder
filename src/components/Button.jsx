@@ -1,13 +1,25 @@
-import React from "react";
+import React, { Component } from "react";
 
-const Button = () => {
+class Button extends Component {
+    state = {
+        page: 1,
+    };
 
-    return (
-        <button type="submit" >
-            Load more
-        </button>
+    handleClick = event => {
+    event.preventDefault();
+
+    this.props.onCLick(this.state.page);
+    };
+    
+    render() {
+        return (
+            <form>
+                <button type="submit" onClick={this.handleClick}>
+                    Load more
+                </button>
+            </form>
                        
         )
     };
-
+}
 export default Button;
