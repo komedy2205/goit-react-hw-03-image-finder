@@ -1,11 +1,15 @@
 import React from "react";
 
-const ImageGalleryItem = ({ smallURL }) => {
+const ImageGalleryItem = ({ images }) => {
     
     return (
-        <li>
-            <img src={smallURL} alt="card" />
-        </li>
+        <>
+            {images.map((type) => (
+                <li key={type.id}>
+                    <img src={type.largeImageURL} alt="" />
+                </li>
+        ))}
+        </>
                        
         )
     };

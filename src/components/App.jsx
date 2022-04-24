@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
+import ImageGalleryItem from "./ImageGalleryItem";
 import Button from './Button';
-import { GlobalStyles } from '../styles';
+import Modal from './Modal';
+import { GlobalStyles } from 'styles';
+
 
 export class App extends Component {
   state = {
     imageName: '',
     images: [],
     page: 1,
+    showModal: false,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -43,18 +47,28 @@ export class App extends Component {
     this.setState({
       page: page + 1,
     });
-  }
+  };
+  
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
+  };
 
   render() {
 
-    const { images } = this.state;
+    const { images, showModal } = this.state;
     
     
     return (
       <>
         <Searchbar onSubmit={this.handleFormChange} />
         <ImageGallery images={images} />
-        {(images.length > 0) && <Button onClick={ this.pageChange }/>}
+        {(images.length > 0) && <Button onClick={this.pageChange}></Button>}
+        {showModal &&
+          <Modal onClose={this.toggleModal}>
+          <ImageGalleryItem images={images} />
+        </Modal>}
         <GlobalStyles/>
       </>
     );

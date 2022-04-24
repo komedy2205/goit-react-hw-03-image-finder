@@ -1,11 +1,12 @@
 import React from 'react';
-import ImageGalleryItem from "./ImageGalleryItem";
 
 function ImageGallery({images}) {
   return (
     <ul className="gallery">
         {images.map((type) => (
-          <ImageGalleryItem key={type.id} smallURL={type.webformatURL}/>
+          <li key={type.id}>
+            <img src={type.webformatURL} alt="" />
+          </li>
         ))}
     </ul>
   );

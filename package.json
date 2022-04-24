@@ -25,6 +25,9 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
+  "resolutions": {
+    "styled-components": "^5"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
