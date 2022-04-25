@@ -177,8 +177,17 @@ export const Overlay = styled.div`
 `;
 
 export const Modals = styled.div`
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+min-height: 560px;
+max-width: 1080px;
+width: 100%;
+padding: 12px;
+background-color: #fff;
+border-radius: 10px;
+box-shadow: 0px 2px 1px -1px;
 `;
 
 /*

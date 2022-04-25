@@ -16,20 +16,20 @@ class Modal extends Component {
 
     handleKeyDown = e => {
         if (e.code === 'Escape') {
-            this.props.onclose();
+            this.props.onClose();
         }
     };
 
     handleBackdropClick = event => {
         if (event.currentTarget === event.target) {
-            this.props.onClick();
+            this.props.onClose();
         }
     };
 
     render() {
         return createPortal(
             <Overlay onClick={this.handleBackdropClick}>
-                <Modals>
+                <Modals className="modal">
                     {this.props.children}
                 </Modals>
             </Overlay>
