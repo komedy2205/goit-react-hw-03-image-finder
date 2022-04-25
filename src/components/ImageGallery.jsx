@@ -5,7 +5,7 @@ function ImageGallery({images}) {
     <ul className="gallery">
         {images.map((type) => (
           <li key={type.id}>
-            <img src={type.webformatURL} alt="" />
+            <img src={type.webformatURL} alt={type.tags} />
           </li>
         ))}
     </ul>

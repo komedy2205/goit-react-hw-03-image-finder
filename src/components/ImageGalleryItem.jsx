@@ -6,7 +6,7 @@ const ImageGalleryItem = ({ images }) => {
         <>
             {images.map((type) => (
                 <li key={type.id}>
-                    <img src={type.largeImageURL} alt="" />
+                    <img src={type.largeImageURL} alt={type.tags} />
                 </li>
         ))}
         </>
