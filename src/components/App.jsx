@@ -17,8 +17,25 @@ export class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.imageName !== this.state.imageName) {
-      this.getImages()
-        .then(image => this.setState(prevState => ({ images: [...prevState.images, ...image.hits] })))
+      const { imageName, page } = this.state;
+      this.getImages(imageName, page)
+        .then(image =>
+          this.setState({
+            images: [...image.hits],
+            page: 1,
+          })
+        )
+        .catch(this.showError);
+    }
+
+    if (prevState.page !== this.state.page) {
+      const { imageName, page } = this.state;
+      this.getImages(imageName, page)
+        .then(image =>
+          this.setState(prevState => ({
+            images: [...prevState.images, ...image.hits],
+          }))
+        )
         .catch(this.showError);
     }
   };
@@ -43,10 +60,8 @@ export class App extends Component {
     });
   };
 
-  pageChange = page => {
-    this.setState({
-      page: page + 1,
-    });
+  pageChange = () => {
+    this.setState(prevState => ({ page: prevState.page + 1 }));
   };
   
   toggleModal = () => {
