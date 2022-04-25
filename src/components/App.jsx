@@ -6,16 +6,17 @@ import Button from './Button';
 import Modal from './Modal';
 import Loader from './Loader';
 import { GlobalStyles } from 'styles';
-// import styled from 'styled-components';
+import { Container } from '../styles';
 
 
 export class App extends Component {
   state = {
     imageName: '',
     images: [],
-    loading: false,
+    loading: false, 
     page: 1,
     showModal: false, 
+    selectedImage: null,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -49,7 +50,7 @@ export class App extends Component {
     this.setState({ loading: true });
 
     return fetch(
-      `https://pixabay.com/api/?q=${imageName}&page=${page}&key=26662147-37bf5d980befc030dc3511be2&image_type=photo&orientation=horizontal&per_page=5`)
+      `https://pixabay.com/api/?q=${imageName}&page=${page}&key=26662147-37bf5d980befc030dc3511be2&image_type=photo&orientation=horizontal&per_page=6`)
       .then(res => {
         if (!res.ok) {
           throw Error(res.statusText);
@@ -75,23 +76,27 @@ export class App extends Component {
     }));
   };
 
+  selectImage = url => {
+    this.setState({ selectedImage: url })
+  };
+
   render() {
 
     const { images, showModal, loading } = this.state;
     
     
     return (
-      <>
+      <Container>
         <Searchbar onSubmit={this.handleFormChange} />
         <ImageGallery images={images} />
         {(images.length > 0) && <Button onClick={this.pageChange}></Button>}
         {loading && <Loader />}
         {showModal &&
-        <Modal onClose={this.toggleModal}>
-          <ImageGalleryItem images={images} />
+        <Modal onClick={this.toggleModal}>
+          <ImageGalleryItem images={images} onSelect={this.selectImage} />
         </Modal>}
         <GlobalStyles/>
-      </>
+      </Container>
     );
   }
 }

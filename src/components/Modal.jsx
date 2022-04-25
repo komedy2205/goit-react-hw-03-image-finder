@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { createPortal } from "react-dom";
+import { Overlay, Modals } from '../styles';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -21,17 +22,17 @@ class Modal extends Component {
 
     handleBackdropClick = event => {
         if (event.currentTarget === event.target) {
-            this.props.onClose();
+            this.props.onClick();
         }
     };
 
     render() {
         return createPortal(
-            <div className="overlay" onClick={this.handleBackdropClick}>
-                <div className="modal">
+            <Overlay onClick={this.handleBackdropClick}>
+                <Modals>
                     {this.props.children}
-                </div>
-            </div>
+                </Modals>
+            </Overlay>
             , modalRoot);
     }
 }

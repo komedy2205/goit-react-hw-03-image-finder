@@ -3,7 +3,7 @@ import { data } from "./data";
 
 export default function App() { 
   return (
-    <div class="container mt-5 text-center">
+    <div className="container mt-5 text-center">
       <h3>React Spinners</h3>
       <div className="row">
         {data.map((loader, index) => (

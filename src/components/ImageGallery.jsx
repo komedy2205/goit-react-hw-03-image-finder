@@ -1,14 +1,15 @@
 import React from 'react';
+import {ImageList, ImageListItemImage} from '../styles'
 
 function ImageGallery({images}) {
   return (
-    <ul className="gallery">
+    <ImageList >
         {images.map((type) => (
-          <li key={type.id}>
-            <img src={type.webformatURL} alt={type.tags} />
-          </li>
+          <ImageListItemImage key={type.id}>
+            <img src={type.webformatURL} alt={type.tags}   height="240px" />
+          </ImageListItemImage>
         ))}
-    </ul>
+    </ImageList>
   );
 }
 

@@ -1,9 +1,10 @@
 import React from 'react';
+import { Load } from '../styles';
 
 export default function Button({ onClick }) {
   return (
-    <button type="button" onClick={onClick}>
+    <Load type="button" onClick={onClick}>
       Load more
-    </button>
+    </Load>
   );
 }
