@@ -1,17 +1,20 @@
 import React from 'react';
-import ImageGalleryItem from './ImageGalleryItem';
-import {ImageList, Image, Item} from '../styles'
+import { ImageList } from '../styles';
 
-function ImageGallery({images}) {
+import ImageGalleryItem from './ImageGalleryItem';
+
+function ImageGallery({ images, onImgClick }) {
   return (
-    <ImageList >
-        {images.map((type) => (
-          <ImageGalleryItem key={type.id} webformatURL={type.webformatURL } largeImageURL={type.largeImageURL }>
-            <Item>
-              <Image src={type.webformatURL} alt={type.tags} height="240px" />
-            </Item>
-          </ImageGalleryItem>
-        ))}
+    <ImageList>
+      {images.map(({ id, largeImageURL, webformatURL, tags }) => (
+        <ImageGalleryItem
+          key={id}
+          tags={tags}
+          onSelect={onImgClick}
+          largeImageURL={largeImageURL}
+          image={webformatURL}
+        />
+      ))}
     </ImageList>
   );
 }

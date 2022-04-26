@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
-import ImageGalleryItem from "./ImageGalleryItem";
 import Button from './Button';
 import Modal from './Modal';
 import Loader from './Loader';
@@ -71,13 +70,17 @@ export class App extends Component {
   };
   
   toggleModal = () => {
-    this.setState(({ showModal }) => ({
-      showModal: !showModal,
-    }));
+    this.setState({
+      showModal: false,
+      selectedImage: '',
+    });
   };
 
-  selectImage = url => {
-    this.setState({ selectedImage: url })
+  selectImage = largeImageURL => {
+    this.setState({
+      selectedImage: largeImageURL,
+      showModal: true,
+    });
   };
 
   render() {
@@ -88,15 +91,17 @@ export class App extends Component {
     return (
       <Container>
         <Searchbar onSubmit={this.handleFormChange} />
-        <ImageGallery images={images} />
+        <ImageGallery images={images} onImgClick={this.selectImage} />
+        
         {(images.length > 0) && <Button onClick={this.pageChange}></Button>}
+
         {loading && <Loader />}
-        {/* <button type='button' onClick={this.toggleModal}>Open modal</button> */}
+
         {showModal &&
         <Modal onClose={this.toggleModal}>
-            <ImageGalleryItem selectImage={this.selectImage} />
-              {/* <button type='button' onClick={this.toggleModal}>Close modal</button> */}
-        </Modal>}
+            <img src={this.state.selectedImage} alt="" />
+          </Modal>}
+        
         <GlobalStyles/>
       </Container>
     );

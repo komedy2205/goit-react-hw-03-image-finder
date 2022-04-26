@@ -1,15 +1,14 @@
-import React from "react";
-import {Item, Image} from '../styles'
+import React from 'react';
+import { ImageListItem, Image } from '../styles';
 
-const ImageGalleryItem = ({ webformatURL, largeImageURL, selectImage }) => {
-    
- 
-    return (
-    <Item onClick={() => selectImage(largeImageURL)}>
-      <Image src={webformatURL} alt="" />
-    </Item>
+const ImageGalleryItem = ({ image, tags, onSelect, largeImageURL }) => {
+  return (
+    <>
+      <ImageListItem>
+        <Image src={image} alt={tags} onClick={() => onSelect(largeImageURL)} />
+      </ImageListItem>
+    </>
   );
-    };
+};
 
 export default ImageGalleryItem;
-
