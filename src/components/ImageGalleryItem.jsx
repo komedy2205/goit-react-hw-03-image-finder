@@ -1,18 +1,15 @@
 import React from "react";
-import {ImageListItem} from '../styles'
+import {Item, Image} from '../styles'
 
-const ImageGalleryItem = ({ images, onSelect }) => {
+const ImageGalleryItem = ({ webformatURL, largeImageURL, selectImage }) => {
     
+ 
     return (
-        <>
-            {images.map((type) => (
-                <ImageListItem key={type.id} onClick={() => onSelect(type.largeImageURL)}>
-                    <img src={type.largeImageURL} alt={type.tags} />
-                </ImageListItem>
-        ))}
-        </>
-                       
-        )
+    <Item onClick={() => selectImage(largeImageURL)}>
+      <Image src={webformatURL} alt="" />
+    </Item>
+  );
     };
 
 export default ImageGalleryItem;
+

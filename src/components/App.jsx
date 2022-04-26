@@ -94,7 +94,7 @@ export class App extends Component {
         {/* <button type='button' onClick={this.toggleModal}>Open modal</button> */}
         {showModal &&
         <Modal onClose={this.toggleModal}>
-            <ImageGalleryItem images={images} onSelect={this.selectImage} />
+            <ImageGalleryItem selectImage={this.selectImage} />
               {/* <button type='button' onClick={this.toggleModal}>Close modal</button> */}
         </Modal>}
         <GlobalStyles/>
