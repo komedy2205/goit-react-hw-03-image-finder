@@ -62,6 +62,7 @@ export class App extends Component {
     this.setState({
       imageName: data,
       images: [],
+      page: 1,
     });
   };
 
