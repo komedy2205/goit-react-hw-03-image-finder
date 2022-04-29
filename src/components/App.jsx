@@ -19,29 +19,26 @@ export class App extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.imageName !== this.state.imageName) {
+    if (
+      prevState.imageName !== this.state.imageName ||
+      prevState.page !== this.state.page
+      ) {
       const { imageName, page } = this.state;
       this.getImages(imageName, page)
         .then(image =>
           this.setState({
-            images: [...image.hits],
-            page: 1,
+            images: [...prevState.images, ...image.hits],
           })
         )
-        .catch(this.showError);
+        .catch(this.showError)
+        .finally(() => this.setState({ loading: false }));
     }
 
-    if (prevState.page !== this.state.page) {
-      const { imageName, page } = this.state;
-      this.getImages(imageName, page)
-        .then(image =>
-          this.setState(prevState => ({
-            images: [...prevState.images, ...image.hits],
-          }))
-        )
-        .catch(this.showError);
-    }
   };
+
+  showError = () => {
+    alert('Oooops, somethig went wrong!')
+  }
 
   getImages = () => {
     const { imageName, page } = this.state;
