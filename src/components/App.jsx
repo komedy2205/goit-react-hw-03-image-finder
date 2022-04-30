@@ -23,11 +23,11 @@ export class App extends Component {
       prevState.imageName !== this.state.imageName ||
       prevState.page !== this.state.page
       ) {
-      const { imageName, page } = this.state;
+      const { imageName, page, images} = this.state;
       this.getImages(imageName, page)
         .then(image =>
           this.setState({
-            images: [...prevState.images, ...image.hits],
+            images: [...images, ...image.hits],
           })
         )
         .catch(this.showError)
